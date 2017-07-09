@@ -140,6 +140,7 @@ public class RaceSetupFragment extends Fragment {
             public void onClick(View v) {
                 int laps = AppState.getInstance().raceState.lapsToGo;
                 AppState.getInstance().changeRaceLaps(laps - 1);
+                AppState.getInstance().sendBtCommand("R*o");
             }
         });
 
@@ -148,6 +149,7 @@ public class RaceSetupFragment extends Fragment {
             public void onClick(View v) {
                 int laps = AppState.getInstance().raceState.lapsToGo;
                 AppState.getInstance().changeRaceLaps(laps + 1);
+                AppState.getInstance().sendBtCommand("R*O");
             }
         });
 

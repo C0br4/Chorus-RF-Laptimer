@@ -150,6 +150,9 @@ public class RaceResultFragment extends Fragment {
                     btnRace.setText("Starting...");
                     mIsStartingRace = true;
                     int timeBeforeRace = AppState.getInstance().timeToPrepareForRace;
+
+                    AppState.getInstance().sendBtCommand("R*G" + String.format("%02X", timeBeforeRace));
+
                     if (timeBeforeRace >= AppState.MIN_TIME_BEFORE_RACE_TO_SPEAK)
                         AppState.getInstance().speakMessage("Starting race in " + Integer.toString(timeBeforeRace - 2) + " seconds");
 
