@@ -172,6 +172,7 @@ public class RaceResultFragment extends Fragment {
                     AppState.getInstance().sendBtCommand("R*V");
                     return true;
                 } else if (mIsStartingRace) {
+                    AppState.getInstance().sendBtCommand("R*r");
                     //TODO: move mIsStartingRace flag into appState, use updateButtons to update button captions
                     mIsStartingRace = false;
                     mRaceStartingHandler.removeCallbacksAndMessages(null);
