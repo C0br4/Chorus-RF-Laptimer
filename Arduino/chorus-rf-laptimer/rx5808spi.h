@@ -27,49 +27,51 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+//TODO
+// - use hardware SPI with own CS pin and share MOSI/SCK instead of bitbanging
 
 void setupSPIpins() {
     // SPI pins for RX control
-    pinMode (slaveSelectPin, OUTPUT);
-    pinMode (spiDataPin, OUTPUT);
-    pinMode (spiClockPin, OUTPUT);
+    pinAsOutput(RX5808SelectPin);
+    pinAsOutput(RX5808DataPin);
+    pinAsOutput(RX5808ClockPin);
 }
 
 void SERIAL_SENDBIT1() {
-    digitalLow(spiClockPin);
+    digitalLow(RX5808ClockPin);
     delayMicroseconds(1);
 
-    digitalHigh(spiDataPin);
+    digitalHigh(RX5808DataPin);
     delayMicroseconds(1);
-    digitalHigh(spiClockPin);
+    digitalHigh(RX5808ClockPin);
     delayMicroseconds(1);
 
-    digitalLow(spiClockPin);
+    digitalLow(RX5808ClockPin);
     delayMicroseconds(1);
 }
 
 void SERIAL_SENDBIT0() {
-    digitalLow(spiClockPin);
+    digitalLow(RX5808ClockPin);
     delayMicroseconds(1);
 
-    digitalLow(spiDataPin);
+    digitalLow(RX5808DataPin);
     delayMicroseconds(1);
-    digitalHigh(spiClockPin);
+    digitalHigh(RX5808ClockPin);
     delayMicroseconds(1);
 
-    digitalLow(spiClockPin);
+    digitalLow(RX5808ClockPin);
     delayMicroseconds(1);
 }
 
 void SERIAL_ENABLE_LOW() {
     delayMicroseconds(1);
-    digitalLow(slaveSelectPin);
+    digitalLow(RX5808SelectPin);
     delayMicroseconds(1);
 }
 
 void SERIAL_ENABLE_HIGH() {
     delayMicroseconds(1);
-    digitalHigh(slaveSelectPin);
+    digitalHigh(RX5808SelectPin);
     delayMicroseconds(1);
 }
 
@@ -141,7 +143,7 @@ void setChannelModule(uint8_t channel, uint8_t band) {
     SERIAL_ENABLE_HIGH();
     delayMicroseconds(1);
 
-    digitalLow(slaveSelectPin);
-    digitalLow(spiClockPin);
-    digitalLow(spiDataPin);
+    digitalLow(RX5808SelectPin);
+    digitalLow(RX5808ClockPin);
+    digitalLow(RX5808DataPin);
 }
