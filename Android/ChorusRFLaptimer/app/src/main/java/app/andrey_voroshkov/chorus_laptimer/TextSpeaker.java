@@ -33,6 +33,13 @@ public class TextSpeaker implements TextToSpeech.OnInitListener
         if(status != TextToSpeech.ERROR){
             tts.setLanguage(Locale.US);
             isInitialized = true;
+
+            tts.setPitch(getFloatfromInt(300));
+            tts.setSpeechRate(getFloatfromInt(50));
         }
+    }
+
+    private static float getFloatfromInt(int i) {
+        return (float) ((double) i / (double) 100);
     }
 }
